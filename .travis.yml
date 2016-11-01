@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "node"
+services:
+  - mongodb
+  - docker
+install:
+  - npm i
+script: npm run mocha
+after_success:
+  - npm run build
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - npm run deploy

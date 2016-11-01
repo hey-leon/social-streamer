@@ -1,0 +1,25 @@
+# ignore docs for now
+/docs
+
+# Ignore build folder
+/build
+
+
+# Ignore module dependancies
+/node_modules
+
+
+# Ignore temp folders
+/tools/dev/temp
+/.nyc_output
+
+
+# Ignore logs
+/.npm-debug.log
+
+# Ignore keys
+/**keys.json
+
+# Ignore personal config files
+.DS_store
+.vscode

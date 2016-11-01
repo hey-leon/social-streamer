@@ -1,0 +1,65 @@
+{
+  "name": "streamer",
+  "version": "1.0.0",
+  "description": "social sample streamer",
+  "license": "MIT",
+  "contributors": [
+    "Leon Pearce <leonp1991@gmail.com>"
+  ],
+  "scripts": {
+    "start": "node ./tools/start",
+    "test": "node ./tools/test",
+    "test:once": "node ./tools/test/once",
+    "test:ci": "node ./tools/test/ci",
+    "lint": "node ./tools/lint",
+    "lint:fix": "node ./tools/lint/fix",
+    "doc": "node ./tools/doc",
+    "doc:once": "node ./tools/doc/once",
+    "build": "node ./tools/build",
+    "open": "node ./tools/open",
+    "open:test": "node ./tools/open/test",
+    "open:api": "node ./tools/open/api",
+    "deploy": "node ./tools/deploy"
+  },
+  "nyc": {
+    "report-dir": "./docs/test",
+    "extension": [
+      ".js"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "statements": 80,
+    "functions": 80,
+    "branches": 80,
+    "lines": 80
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.16.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-preset-node6": "^11.0.0",
+    "esdoc": "^0.4.8",
+    "esdoc-es7-plugin": "0.0.3",
+    "eslint": "^3.6.1",
+    "nodemon": "^1.10.2",
+    "nyc": "^8.3.0",
+    "supertest": "^2.0.0",
+    "watch": "^0.19.2"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "node-fetch": "^1.6.3",
+    "redux": "^3.6.0",
+    "socket.io": "^1.5.1",
+    "twitter-stream-api": "^0.4.3"
+  }
+}

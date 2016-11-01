@@ -1,0 +1,14 @@
+version: '2'
+services:
+  api:
+    image: qutseamless/api
+    build:
+      context: ../../
+    ports:
+      - "3000:3000"
+    links:
+     - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
