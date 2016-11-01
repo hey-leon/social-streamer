@@ -15,7 +15,14 @@ const t = new Twitter(cfg);
  */
 const tracking = [];
 
+
+/**
+ * globals for managing operation of stream
+ */
 let rateLimited = false;
+let updateReady = false;
+let updateInterval = 0;
+
 
 /**
  * syncs the current filters with state
@@ -43,7 +50,7 @@ function sync(store) {
   }
 
   if (filterChange) {
-    update();
+    updateReady = true;
   }
 }
 
@@ -53,9 +60,10 @@ function sync(store) {
  * updates the stream filters
  */
 function update() {
-  if (rateLimited) return;
-  log(tracking);
+  if (!updateReady || rateLimited) return;
+  updateReady = false;
 
+  log(tracking);
   if (tracking.length === 0) {
     t.close();
   }
@@ -130,10 +138,7 @@ export function start(io, store) {
 
   t.on('connection success', () => {
     console.log('connection success');
-    if (rateLimited) {
-      rateLimited = false;
-      update();
-    }
+    rateLimited = false;
   });
 
   t.on('connection rate limit', status => {
@@ -148,6 +153,8 @@ export function start(io, store) {
 
 
   store.subscribe(() => sync(store));
+
+  updateInterval = setInterval(update, 15000);
 }
 
 
@@ -157,4 +164,5 @@ export function start(io, store) {
  */
 export function stop() {
   t.close();
+  clearInterval(updateInterval);
 }
