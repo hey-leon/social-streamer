@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 let endpoint = 'http://localhost:10000';
 if (process.env.NODE_ENV === 'production') {
-  endpoint = 'ss-worker-group-100515665.ap-southeast-2.elb.amazonaws.com:1000';
+  endpoint = 'http://ss-worker-group-100515665.ap-southeast-2.elb.amazonaws.com:1000';
 }
 
 export default function (tweet) {
